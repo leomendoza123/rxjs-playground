@@ -1,6 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { SmokerLifeCycleService } from './smoker-life-cycle.service';
 import { Observable, Scheduler } from 'rxjs';
+import { async } from 'rxjs/scheduler/async';
 import 'rxjs/add/observable/of';
 
 
@@ -20,7 +21,7 @@ describe('LifeCycleService', () => {
   }));
 
   it('Smoker should smoke', () => {
-      spyOn (service, 'smokeACigaret').and.returnValue(Observable.of('PFF'));
+      spyOn (service, 'smokeACigaret').and.returnValue(Observable.of('PFF', async));
         service.smokeHabit(Observable.of('Test smoker life')).subscribe((result) => {
         expect(result).toBeTruthy();
       });
